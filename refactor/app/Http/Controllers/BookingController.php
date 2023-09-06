@@ -35,7 +35,10 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        if($user_id = $request->get('user_id')) {
+
+        $user_id = $request->get('user_id');
+
+        if($user_id) {
 
             $response = $this->repository->getUsersJobs($user_id);
 
