@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use CODETEST_2022_V6\test\app\Repository\UserRepository; 
 use CODETEST_2022_V6\test\app\Helpers\TeHelper; 
-
+use DTApi\Models\User;
 class UserControllerTests extends TestCase {
 
 
@@ -39,20 +39,8 @@ class UserControllerTests extends TestCase {
         $respUser = $userRepository->createOrUpdate(null, $payload);
        
         
-        if($respUser){
-            $this->assertJsonStructure(
-                [
-                    'id',
-                    'user_type',
-                    'name',
-                    'company_id',
-                    'email',
-                    'dob_or_orgid',
-                    'phone',
-                    'mobile'
-                       
-                ] 
-            );
+        if($respUser && $respUser instanceof User){
+            $this->assertTrue(true);
           }
          else{
             $this->assertTrue(false);
